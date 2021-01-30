@@ -1,5 +1,9 @@
 FROM php:8.0-apache-buster
 
+#************************************************* 
+# ALTERED FROM https://github.com/docker-library/wordpress/tree/6b23e6249e287eb8b73ed74eaadc827f1b57d704/beta/php8.0/apache
+#*************************************************
+
 # persistent dependencies
 RUN set -eux; \
     apt-get update; \

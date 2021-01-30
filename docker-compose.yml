@@ -3,6 +3,7 @@ version: "3.1"
 services:
     db:
         image: mysql:8.0
+        # build: db
         restart: always
         command: --default-authentication-plugin=mysql_native_password
         secrets:
@@ -10,10 +11,8 @@ services:
             - db_database
         environment:
             - TZ=CET
-            # - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_root_password
-            # - MYSQL_DATABASE_FILE=/run/secrets/db_database
-            - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_DATABASE=wordpress
+            - MYSQL_DATABASE_FILE=/run/secrets/db_database
+            - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_root_password
         networks:
             web-db:
             admin-db:
@@ -29,12 +28,10 @@ services:
             - db_database
         environment:
             - TZ=CET
-            - WORDPRESS_DB_HOST=db
             - WORDPRESS_DB_USER=root
-            # - WORDPRESS_DB_PASSWORD=/run/secrets/db_root_password
-            # - WORDPRESS_DB_NAME=/run/secrets/db_database
-            - WORDPRESS_DB_PASSWORD=root
-            - WORDPRESS_DB_NAME=wordpress
+            - WORDPRESS_DB_HOST=db
+            - WORDPRESS_DB_NAME_FILE=/run/secrets/db_database
+            - WORDPRESS_DB_PASSWORD_FILE=/run/secrets/db_root_password
             - WP_DEBUG=true
         networks:
             - web-db
@@ -53,7 +50,6 @@ services:
             - TZ=CET
             - PMA_HOST=db
             - PMA_USER=root
-            # - PMA_PASSWORD_FILE=/run/secrets/db_root_password
             - PMA_PASSWORD_FILE=/run/secrets/db_root_password
         ports:
             - 55081:80
