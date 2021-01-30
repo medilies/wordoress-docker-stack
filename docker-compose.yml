@@ -1,3 +1,4 @@
+# BEFORE LAUNCHING THE STACK, check MYSQL volume name and port umbers
 version: "3.1"
 
 services:
@@ -17,7 +18,7 @@ services:
             web-db:
             admin-db:
         volumes:
-            - wp-db:/var/lib/mysql
+            - wp-dbxxx:/var/lib/mysql
 
     web:
         image: wp:php8-apache-buster
@@ -28,11 +29,11 @@ services:
             - db_database
         environment:
             - TZ=CET
-            - WORDPRESS_DB_USER=root
-            - WORDPRESS_DB_HOST=db
             - WORDPRESS_DB_NAME_FILE=/run/secrets/db_database
+            - WORDPRESS_DB_USER=root
             - WORDPRESS_DB_PASSWORD_FILE=/run/secrets/db_root_password
-            - WP_DEBUG=true
+            - WORDPRESS_DB_HOST=db
+            - WORDPRESS_DEBUG=true
         networks:
             - web-db
         ports:
@@ -48,9 +49,9 @@ services:
             - db_root_password
         environment:
             - TZ=CET
-            - PMA_HOST=db
             - PMA_USER=root
             - PMA_PASSWORD_FILE=/run/secrets/db_root_password
+            - PMA_HOST=db
         ports:
             - 55081:80
         networks:
@@ -63,7 +64,7 @@ networks:
     admin-db:
 
 volumes:
-    wp-db:
+    wp-dbxxx:
 
 secrets:
     db_root_password:
