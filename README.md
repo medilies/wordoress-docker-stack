@@ -4,6 +4,8 @@
 - MYSQL : db service
 - PHPMyAdmin : phpmyadmin service
 
+Get creative in selecting images that share the same base to economise RAM utilisation :) 
+
 # ENV SETUP
 
 **DOWNLOAD WORDPRESS AND COPY IT TO /web/src**
