@@ -17,7 +17,7 @@ The *secret db_root_password* is used by all services to set:
 - web: WORDPRESS_DB_USER
 - phpmyadmin: PMA_PASSWORD_FILE
 
-The *secret db_database* used by to set:
+The *secret db_database* is used by db & web to set:
 - db: MYSQL_DATABASE_FILE and create the DB if it doesn't already exist in the **VOLUME wp-db**
 - web: WORDPRESS_DB_NAME_FILE
 
