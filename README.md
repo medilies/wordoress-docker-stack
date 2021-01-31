@@ -12,11 +12,16 @@ Containers' timing TZ is set to +1GMT CET timezone by default in /docker-compose
 
 All services are set to use "root" as DB_USER
 
-All services get DB_ROOT_PASSWORD from the *secret db_root_password*
+The *secret db_root_password* is used by all services to set:
+- db: MYSQL_ROOT_PASSWORD_FILE
+- web: WORDPRESS_DB_USER
+- phpmyadmin: PMA_PASSWORD_FILE
+
+The *secret db_database* used by to set:
+- db: MYSQL_DATABASE_FILE and create the DB if it doesn't already exist in the **VOLUME wp-db**
+- web: WORDPRESS_DB_NAME_FILE
 
 Service name "db" is used as DB_HOSTNAME
-
-DB_NAME is set in the *secret db_database* for the service db & web. If the DB doesn't already exist in the VOLUME wp-db a new one will be created on deploy
 
 **IMPORTNT** mind renaming **wp-db VOLUME** if you want to launch other wordpress stacks!!
 
@@ -24,7 +29,12 @@ DB_NAME is set in the *secret db_database* for the service db & web. If the DB d
 
 Services web and phpmyadmin are on separate networks
 
-**/web/src/wp-config.php** contains defaults for WORDPRESS_DB_NAME, WORDPRESS_DB_USER, WORDPRESS_DB_PASSWORD, WORDPRESS_DB_HOST and WORDPRESS_DEBUG!
+**/web/src/wp-config.php** contains defaults for: 
+- WORDPRESS_DB_NAME
+- WORDPRESS_DB_USER
+- WORDPRESS_DB_PASSWORD
+- WORDPRESS_DB_HOST
+- WORDPRESS_DEBUG
 
 # ENV SETUP
 
