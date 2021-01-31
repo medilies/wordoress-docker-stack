@@ -18,12 +18,12 @@ The *secret db_root_password* is used by all services to set:
 - phpmyadmin: PMA_PASSWORD_FILE
 
 The *secret db_database* is used by db & web to set:
-- db: MYSQL_DATABASE_FILE and create the DB if it doesn't already exist in the **VOLUME wp-db**
+- db: MYSQL_DATABASE_FILE and create the DB if it doesn't already exist in the **VOLUME wp-dbxxx**
 - web: WORDPRESS_DB_NAME_FILE
 
 Service name "db" is used as DB_HOSTNAME
 
-**IMPORTNT** mind renaming **wp-db VOLUME** if you want to launch other wordpress stacks!!
+**IMPORTNT** mind renaming **wp-dbxxx VOLUME** if you want to launch other wordpress stacks!!
 
 **NOTE** check port numbers you wanna use!
 
