@@ -14,7 +14,7 @@ All services are set to use "root" as DB_USER
 
 The *secret db_root_password* is used by all services to set:
 - db: MYSQL_ROOT_PASSWORD_FILE
-- web: WORDPRESS_DB_USER
+- web: WORDPRESS_DB_PASSWORD_FILE
 - phpmyadmin: PMA_PASSWORD_FILE
 
 The *secret db_database* is used by db & web to set:
